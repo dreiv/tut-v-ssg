@@ -12,4 +12,7 @@ const routes = [
   },
 ];
 
-export const createApp = ViteSSG(App, { routes });
+export const createApp = ViteSSG(App, {
+  routes,
+  base: import.meta.env.BASE_URL,
+});
