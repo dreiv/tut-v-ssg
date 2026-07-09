@@ -3,23 +3,31 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueDevTools from "vite-plugin-vue-devtools";
-import type { ViteSSGOptions } from "vite-ssg";
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   base: "/tut-v-ssg/",
-  plugins: [vue(), vueDevTools()],
+
+  plugins: [vue(), command === "serve" ? vueDevTools() : null],
+
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+
+  build: {
+    cssCodeSplit: false,
+  },
+
   ssgOptions: {
-    formatting: "minify",
-    crittersOptions: {
+    formatting: "prettify",
+
+    beastiesOptions: {
       reduceInlineStyles: false,
-      preload: "swap",
+      preload: "none",
+
       publicPath: "/tut-v-ssg/",
+      inlineThreshold: 90000,
     },
-  } as ViteSSGOptions,
-});
+  } as never,
+}));
