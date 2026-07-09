@@ -10,6 +10,10 @@ const routes = [
     path: "/about",
     component: () => import("./pages/About.vue"),
   },
+  {
+    path: "/:pathMatch(.*)*",
+    redirect: "/",
+  },
 ];
 
 export const createApp = ViteSSG(App, {
