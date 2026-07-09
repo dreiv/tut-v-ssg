@@ -20,6 +20,7 @@
     "@vitejs/plugin-vue": "^6.0.7",
     "@vue/server-renderer": "beta",
     "@vue/tsconfig": "^0.9.1",
+    "critters": "^0.0.23",
     "npm-run-all2": "^9.0.2",
     "oxfmt": "^0.54.0",
     "typescript": "~6.0.0",
